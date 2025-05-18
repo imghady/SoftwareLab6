@@ -1,52 +1,19 @@
-# Notes project
+# آزمایش ۶ نرم افزار (کار با داکر و میکروسرویس)
 
-## Requirements
-- Python3
-- Postgres
+## بخش اول: ایجاد Dockerfile و docker-compose.yml
 
-## How to run
+## بخش دوم: تست با پستمن
 
-### Setup virtual environment
+## بخش سوم: پاسخگویی به سوالات
+۱- وظایف Dockerfile، image و container را توضیح دهید.
 
-#### Create venv
-```
-python -m venv ./venv
-```
+**Dockerfile**  
+یک فایل متنی شامل دستورالعمل‌های ساخت Image داکر است. این فایل با دستوراتی مانند `FROM` (تعیین پایه Image)، `COPY` (کپی فایل‌ها)، `RUN` (اجرای دستورات نصب) و `CMD` (تعیین دستور پیش‌فرض اجرا) تنظیم می‌شود. هر دستور یک **لایه** در Image نهایی ایجاد می‌کند که بهینه‌سازی و کش‌شدن مراحل ساخت را ممکن می‌سازد.  
 
-#### Install requirements
-```
-python -m pip install -r requirements.txt
-```
+**Image**  
+خروجی نهایی پردازش Dockerfile است. Image یک پکیج **غیرقابل تغییر** (Immutable) شامل کد برنامه، runtime، کتابخانه‌ها و تنظیمات است. این پکیج به عنوان الگویی ایستا عمل می‌کند که می‌توان از آن چندین Container ساخت. Imageها در رجیستری‌هایی مانند Docker Hub ذخیره و بین توسعه‌دهندگان به اشتراک گذاشته می‌شوند.  
 
-#### Activate venv
-```
-source ./venv/bin/activate
-```
+**Container**  
+نمونهِ در حال اجرا از یک Image است. Containerها محیطی **ایزوله** و سبک برای اجرای برنامه فراهم می‌کنند و دارای یک لایه نوشتنی موقت برای ذخیره تغییرات حین اجرا هستند. با توقف Container، این تغییرات از بین می‌روند مگر از Volumeها برای ذخیره داده‌های پایدار استفاده شود. هر Container چرخه حیات مستقلی دارد و از طریق دستوراتی مانند `docker run` یا `docker stop` مدیریت می‌شود.
 
-### Setup database
-1. Create an instance of postgres database
-2. Make migrations
-    ```
-    python manage.py makemigrations
-    ```
-3. Migrate
-    ```
-    python manage.py migrate
-    ```
-
-### Create an admin
-```
-python manage.py createsuperuser
-```
-
-## Important end-points
-```
-users/login/ --> login a user
-users/me/ --> get information of logged-in user
-users/create/ --> create a user
-users/<id>/delete/ --> delete a user
-notes/ --> list all notes of current user
-notes/<id>/ --> get details of a note
-notes/create/ --> create a note
-notes/<id>/delete/ --> delete a note
-```
+۲- از kubernetes برای انجام چه کارهایی می‌توان استفاده کرد؟ رابطه آن با داکر چیست؟
